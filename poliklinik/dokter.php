@@ -9,14 +9,14 @@ if (!isset($_SESSION['username'])) {
 }
 
 if (isset($_POST['simpan'])) {
-  $nama = $_POST['nama'];
-  $alamat = $_POST['alamat'];
-  $no_hp = $_POST['no_hp'];
-  $id_poli = $_POST['id_poli'];
-  $nip = $_POST['nip'];
-  $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-  if (isset($_POST['id'])) {
-      $ubah = mysqli_query($mysqli, "UPDATE dokter SET 
+    $nama = $_POST['nama'];
+    $alamat = $_POST['alamat'];
+    $no_hp = $_POST['no_hp'];
+    $id_poli = $_POST['id_poli'];
+    $nip = $_POST['nip'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    if (isset($_POST['id'])) {
+        $ubah = mysqli_query($mysqli, "UPDATE dokter SET 
                                           nama = '$nama',
                                           alamat = '$alamat',
                                           no_hp = '$no_hp',
@@ -25,8 +25,8 @@ if (isset($_POST['simpan'])) {
                                           password = '$password'
                                           WHERE
                                           id = '" . $_POST['id'] . "'");
-  } else {
-      $tambah = mysqli_query($mysqli, "INSERT INTO dokter (nama, alamat, no_hp, id_poli, nip, password) 
+    } else {
+        $tambah = mysqli_query($mysqli, "INSERT INTO dokter (nama, alamat, no_hp, id_poli, nip, password) 
                                           VALUES (
                                               '$nama',
                                               '$alamat',
@@ -35,18 +35,18 @@ if (isset($_POST['simpan'])) {
                                               '$nip',
                                               '$password'
                                           )");
-  }
-  echo "<script> 
+    }
+    echo "<script> 
               document.location='dashboard.php?page=dokter';
               </script>";
 }
 
 if (isset($_GET['aksi'])) {
-  if ($_GET['aksi'] == 'hapus') {
-      $hapus = mysqli_query($mysqli, "DELETE FROM dokter WHERE id = '" . $_GET['id'] . "'");
-  }
+    if ($_GET['aksi'] == 'hapus') {
+        $hapus = mysqli_query($mysqli, "DELETE FROM dokter WHERE id = '" . $_GET['id'] . "'");
+    }
 
-  echo "<script> 
+    echo "<script> 
               document.location='dashboard.php?page=dokter';
               </script>";
 }
@@ -55,92 +55,92 @@ if (isset($_GET['aksi'])) {
     <!--Form Input Data-->
 
     <form class="form col" method="POST" action="" name="myForm" onsubmit="return(validate());">
-    <!-- Kode php untuk menghubungkan form dengan database -->
-    <?php
-    $nama = '';
-    $alamat = '';
-    $no_hp = '';
-    $id_poli = '';
-    $nip = '';
-    $password = '';
-    if (isset($_GET['id'])) {
-        $ambil = mysqli_query($mysqli, "SELECT * FROM dokter WHERE id='" . $_GET['id'] . "'");
-        while ($row = mysqli_fetch_array($ambil)) {
-            $nama = $row['nama'];
-            $alamat = $row['alamat'];
-            $no_hp = $row['no_hp'];
-            $id_poli = $row['id_poli'];
-            $nip = $row['nip'];
-            $password = $row['password'];
+        <!-- Kode php untuk menghubungkan form dengan database -->
+        <?php
+        $nama = '';
+        $alamat = '';
+        $no_hp = '';
+        $id_poli = '';
+        $nip = '';
+        $password = '';
+        if (isset($_GET['id'])) {
+            $ambil = mysqli_query($mysqli, "SELECT * FROM dokter WHERE id='" . $_GET['id'] . "'");
+            while ($row = mysqli_fetch_array($ambil)) {
+                $nama = $row['nama'];
+                $alamat = $row['alamat'];
+                $no_hp = $row['no_hp'];
+                $id_poli = $row['id_poli'];
+                $nip = $row['nip'];
+                $password = $row['password'];
+            }
+        ?>
+            <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>">
+        <?php
         }
-    ?>
-        <input type="hidden" name="id" value="<?php echo $_GET['id'] ?>">
-    <?php
-    }
-    ?>
-    <div class="col">
-        <label for="inputNama" class="form-label fw-bold">
-            Nama
-        </label>
-        <div>
-            <input type="text" class="form-control" name="nama" id="inputNama" placeholder="Nama" value="<?php echo $nama ?>">
+        ?>
+        <div class="col">
+            <label for="inputNama" class="form-label fw-bold">
+                Nama
+            </label>
+            <div>
+                <input type="text" class="form-control" name="nama" id="inputNama" placeholder="cth: Lionel Ronaldo" value="<?php echo $nama ?>">
+            </div>
         </div>
-    </div>
-    <div class="col mt-1">
-        <label for="inputalamat" class="form-label fw-bold">
-            alamat
-        </label>
-        <div>
-            <input type="text" class="form-control" name="alamat" id="inputalamat" placeholder="alamat" value="<?php echo $alamat ?>">
+        <div class="col mt-1">
+            <label for="inputalamat" class="form-label fw-bold">
+                Alamat
+            </label>
+            <div>
+                <input type="text" class="form-control" name="alamat" id="inputalamat" placeholder="cth: Jl.Mawar" value="<?php echo $alamat ?>">
+            </div>
         </div>
-    </div>
-    <div class="col mt-1">
-        <label for="inputNoHp" class="form-label fw-bold">
-            no_hp
-        </label>
-        <div>
-            <input type="text" class="form-control" name="no_hp" id="inputNoHp" placeholder="no_hp" value="<?php echo $no_hp ?>">
+        <div class="col mt-1">
+            <label for="inputNoHp" class="form-label fw-bold">
+                No HP
+            </label>
+            <div>
+                <input type="text" class="form-control" name="no_hp" id="inputNoHp" placeholder="08XXXXXXXXXX" value="<?php echo $no_hp ?>">
+            </div>
         </div>
-    </div>
-    <div class="col mt-1">
-        <label for="inputPoli" class="form-label fw-bold">
-            Poli
-        </label>
-        <div>
-            <select class="form-select" name="id_poli" id="inputPoli">
-                <option value="">Pilih Poli</option>
-                <?php
-                $poli_result = mysqli_query($mysqli, "SELECT * FROM poli");
-                while ($poli_data = mysqli_fetch_array($poli_result)) {
-                    $selected = ($poli_data['id'] == $id_poli) ? 'selected' : '';
-                    echo "<option value='" . $poli_data['id'] . "' $selected>" . $poli_data['nama_poli'] . "</option>";
-                }
-                ?>
-            </select>
+        <div class="col mt-1">
+            <label for="inputPoli" class="form-label fw-bold">
+                Poli
+            </label>
+            <div>
+                <select class="form-select" name="id_poli" id="inputPoli" >
+                    <option value="">Pilih Poli</option>
+                    <?php
+                    $poli_result = mysqli_query($mysqli, "SELECT * FROM poli");
+                    while ($poli_data = mysqli_fetch_array($poli_result)) {
+                        $selected = ($poli_data['id'] == $id_poli) ? 'selected' : '';
+                        echo "<option value='" . $poli_data['id'] . "' $selected>" . $poli_data['nama_poli'] . "</option>";
+                    }
+                    ?>
+                </select>
+            </div>
         </div>
-    </div>
-    <div class="col mt-1">
-        <label for="inputNip" class="form-label fw-bold">
-            NIP
-        </label>
-        <div>
-            <input type="text" class="form-control" name="nip" id="inputNip" placeholder="NIP" value="<?php echo $nip ?>">
+        <div class="col mt-1">
+            <label for="inputNip" class="form-label fw-bold">
+                NIP
+            </label>
+            <div>
+                <input type="text" class="form-control" name="nip" id="inputNip" placeholder="NIP" value="<?php echo $nip ?>">
+            </div>
         </div>
-    </div>
-    <div class="col mt-1">
-        <label for="inputPassword" class="form-label fw-bold">
-            Password
-        </label>
-        <div>
-            <input type="password" class="form-control" name="password" id="inputPassword" placeholder="password" value="<?php echo $password ?>">
+        <div class="col mt-1">
+            <label for="inputPassword" class="form-label fw-bold">
+                Password
+            </label>
+            <div>
+                <input type="password" class="form-control" name="password" id="inputPassword" placeholder="password" value="<?php echo $password ?>">
+            </div>
         </div>
-    </div>
-    <div class="col mt-3">
-        <div class=col>
-            <button type="submit" class="btn btn-primary rounded-pill px-3 mt-auto" name="simpan">Simpan</button>
+        <div class="col mt-3">
+            <div class=col>
+                <button type="submit" class="btn btn-primary rounded-pill px-3 mt-auto" name="simpan">Simpan</button>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
     <br>
     <br>
     <!-- Table-->
@@ -161,24 +161,24 @@ if (isset($_GET['aksi'])) {
         <tbody>
             <!-- Kode PHP untuk menampilkan semua isi dari tabel urut-->
             <?php
-        $result = mysqli_query($mysqli, "SELECT dokter.*, poli.nama_poli AS nama_poli FROM dokter JOIN poli ON dokter.id_poli = poli.id");
-        $no = 1;
-        while ($data = mysqli_fetch_array($result)) {
-        ?>
-            <tr>
-                <th scope="row"><?php echo $no++ ?></th>
-                <td><?php echo $data['nama'] ?></td>
-                <td><?php echo $data['alamat'] ?></td>
-                <td><?php echo $data['no_hp'] ?></td>
-                <td><?php echo $data['nama_poli'] ?></td>
-                <td><?php echo $data['nip'] ?></td>
-                <td>
-                    <a class="btn btn-success rounded-pill px-3" href="dashboard.php?page=dokter&id=<?php echo $data['id'] ?>">Ubah</a>
-                    <a class="btn btn-danger rounded-pill px-3" href="dashboard.php?page=dokter&id=<?php echo $data['id'] ?>&aksi=hapus">Hapus</a>
-                </td>
-            </tr>
-        <?php
-        }
-        ?>
+            $result = mysqli_query($mysqli, "SELECT dokter.*, poli.nama_poli AS nama_poli FROM dokter JOIN poli ON dokter.id_poli = poli.id");
+            $no = 1;
+            while ($data = mysqli_fetch_array($result)) {
+            ?>
+                <tr>
+                    <th scope="row"><?php echo $no++ ?></th>
+                    <td><?php echo $data['nama'] ?></td>
+                    <td><?php echo $data['alamat'] ?></td>
+                    <td><?php echo $data['no_hp'] ?></td>
+                    <td><?php echo $data['nama_poli'] ?></td>
+                    <td><?php echo $data['nip'] ?></td>
+                    <td>
+                        <a class="btn btn-success rounded-pill px-3" href="dashboard.php?page=dokter&id=<?php echo $data['id'] ?>">Ubah</a>
+                        <a class="btn btn-danger rounded-pill px-3" href="dashboard.php?page=dokter&id=<?php echo $data['id'] ?>&aksi=hapus">Hapus</a>
+                    </td>
+                </tr>
+            <?php
+            }
+            ?>
         </tbody>
     </table>

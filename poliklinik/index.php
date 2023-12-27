@@ -29,6 +29,9 @@ include_once("koneksi.php");
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="index.php">Home</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.php?page=pasienbaru">Pasien Baru</a>
+                    </li>
                     <?php
                     if (isset($_SESSION['username'])) {
                         // Jika admin sudah login, tampilkan menu "Dashboard Admin"
@@ -40,7 +43,7 @@ include_once("koneksi.php");
                     }
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.php?page=loginDokter">Dokter</a>
+                        <a class="nav-link" aria-current="page" href="dokterloginsession.php">Dokter</a>
                     </li>
                     <!-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Data Master</a>
@@ -57,7 +60,7 @@ include_once("koneksi.php");
                 ?>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="Logout.php">Logout (<?php echo $_SESSION['username'] ?>)</a>
+                            <a class="nav-link" href="logoutadmin.php">Logout (<?php echo $_SESSION['username'] ?>)</a>
                         </li>
                     </ul>
                 <?php
@@ -79,6 +82,7 @@ include_once("koneksi.php");
             </div>
         </div>
     </nav>
+    
 
     <main role="main" class="container">
         <?php
@@ -96,9 +100,6 @@ include_once("koneksi.php");
             }
         }
         ?>
-        <div class="col-md-8 col-lg-7 col-xl-6">
-            <img src="biglogo.png" class="img-fluid" alt="image">
-        </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

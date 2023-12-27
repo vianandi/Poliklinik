@@ -98,7 +98,7 @@ include_once("koneksi.php");
           ?>
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link" href="Logout.php">Logout (<?php echo $_SESSION['username'] ?>)</a>
+                <a class="nav-link" href="logoutadmin.php">Logout (<?php echo $_SESSION['username'] ?>)</a>
               </li>
             </ul>
           <?php
@@ -123,7 +123,7 @@ include_once("koneksi.php");
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <aside class="main-sidebar sidebar-light-primary elevation-4">
       <!-- Brand Logo -->
       <a href="dashboard.php" class="brand-link">
         <h4 class="brand-text font-weight-light">Majestic Clinic Center</h4>
@@ -148,7 +148,7 @@ include_once("koneksi.php");
             </li>
             <li class="nav-item">
               <a href="dashboard.php?page=dokter" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
+                <i class="nav-icon fas fa-solid fa-hospital-user"></i>
                 <p>
                   Dokter
                 </p>
@@ -156,7 +156,7 @@ include_once("koneksi.php");
             </li>
             <li class="nav-item">
               <a href="dashboard.php?page=poli" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
+                <i class="nav-icon fas fa-solid fa-hospital"></i>
                 <p>
                   Poli
                 </p>
@@ -164,7 +164,7 @@ include_once("koneksi.php");
             </li>
             <li class="nav-item">
               <a href="dashboard.php?page=obat" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
+                <i class="nav-icon fas fa-solid fa-pills"></i>
                 <p>
                   Obat
                 </p>
