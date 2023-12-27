@@ -107,7 +107,7 @@ if (isset($_GET['aksi'])) {
                 Poli
             </label>
             <div>
-                <select class="form-select" name="id_poli" id="inputPoli" >
+                <select class="form-select" name="id_poli" id="inputPoli">
                     <option value="">Pilih Poli</option>
                     <?php
                     $poli_result = mysqli_query($mysqli, "SELECT * FROM poli");
@@ -182,3 +182,4 @@ if (isset($_GET['aksi'])) {
             ?>
         </tbody>
     </table>
+</div>
