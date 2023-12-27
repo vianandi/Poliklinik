@@ -138,8 +138,8 @@ include_once("koneksi.php");
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
             <!-- Add icons to the links using the .nav-icon class
               with font-awesome or any other icon font library -->
-            <li class="nav-item menu-open">
-              <a href="dashboard.php" class="nav-link active">
+            <li class="nav-item ">
+              <a href="dashboard.php" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Dashboard
@@ -167,6 +167,14 @@ include_once("koneksi.php");
                 <i class="nav-icon fas fa-solid fa-pills"></i>
                 <p>
                   Obat
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="dashboard.php?page=registerUser" class="nav-link">
+                <i class="nav-icon fas fa-solid fa-user-plus"></i>
+                <p>
+                  Add Admin
                 </p>
               </a>
             </li>

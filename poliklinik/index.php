@@ -68,9 +68,9 @@ include_once("koneksi.php");
                     // Jika pengguna belum login, tampilkan tombol "Login" dan "Register"
                 ?>
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="index.php?page=registerUser">Register</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?page=loginUser">Login</a>
                         </li>

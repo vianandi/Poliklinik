@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (mysqli_query($mysqli, $insert_query)) {
                 echo "<script>
                 alert('Pendaftaran Berhasil'); 
-                document.location='index.php?page=loginUser';
+                document.location='dashboard.php?page=registerUser';
                 </script>";
             } else {
                 $error = "Pendaftaran gagal";
@@ -46,9 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <?php
                         if (isset($error)) {
                             echo '<div class="alert alert-danger">' . $error . '
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
                                     </div>';
                         }
                         ?>
@@ -68,9 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <button type="submit" class="btn btn-primary btn-block">Register</button>
                         </div>
                     </form>
-                    <div class="text-center">
-                        <p class="mt-3">Sudah Punya Akun? <a href="index.php?page=loginUser">Login</a></p>
-                    </div>
                 </div>
             </div>
         </div>
