@@ -178,6 +178,30 @@ include_once("koneksi.php");
                 </p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="dashboard.php?page=pasienadmin" class="nav-link">
+                <i class="nav-icon fas fa-solid fa-bed"></i>
+                <p>
+                  Pasien
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="dashboard.php?page=jadwalperiksa" class="nav-link">
+                <i class="nav-icon fas fa-solid fa-calendar"></i>
+                <p>
+                  Jadwal Periksa
+                </p>
+              </a>
+            </li>
+            <!-- <li class="nav-item">
+              <a href="dashboard.php?page=coba" class="nav-link">
+                <i class="nav-icon fas fa-solid fa-calendar"></i>
+                <p>
+                  Rawat Jalan
+                </p>
+              </a>
+            </li> -->
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -201,9 +225,7 @@ include_once("koneksi.php");
                 }
                 ?>
               </h2>
-
             </div><!-- /.col -->
-
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
       </div>

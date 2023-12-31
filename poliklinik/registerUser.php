@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $ambil = mysqli_query($mysqli, "SELECT * FROM user 
                     WHERE id='" . $_GET['id'] . "'");
             while ($row = mysqli_fetch_array($ambil)) {
-                $namat = $row['nama'];
+                $nama = $row['nama'];
                 $username = $row['username'];
                 $password = $row['password'];
             }
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 Nama
             </label>
             <div>
-                <input type="text" class="form-control" name="nama" id="inputNama" placeholder="Nama" value="<?php echo $nama ?>">
+                <input type="text" class="form-control" name="nama" id="inputNama" required placeholder="Nama" value="<?php echo $nama ?>">
             </div>
         </div>
         <div class="col mt-1">
@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 Username
             </label>
             <div>
-                <input type="text" class="form-control" name="username" id="inputKemasan" placeholder="Username" value="<?php echo $username ?>">
+                <input type="text" class="form-control" name="username" id="inputKemasan" required placeholder="Username" value="<?php echo $username ?>">
             </div>
         </div>
         <div class="col mt-1">
@@ -114,12 +114,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 Password
             </label>
             <div>
-                <input type="password" class="form-control" name="password" id="inputHarga" placeholder="Password" value="<?php echo $password ?>">
+                <input type="password" class="form-control" name="password" id="inputHarga" required placeholder="Password" value="<?php echo $password ?>">
             </div>
 
         </div>
         <div class="col mt-3">
-            <div class=col>
+            <div class="col">
                 <button type="submit" class="btn btn-primary rounded-pill px-3 mt-auto" name="simpan">Simpan</button>
             </div>
         </div>

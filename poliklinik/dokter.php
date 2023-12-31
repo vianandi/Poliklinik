@@ -83,7 +83,7 @@ if (isset($_GET['aksi'])) {
                 Nama
             </label>
             <div>
-                <input type="text" class="form-control" name="nama" id="inputNama" placeholder="cth: Lionel Ronaldo" value="<?php echo $nama ?>">
+                <input type="text" class="form-control" name="nama" id="inputNama" required placeholder="cth: Lionel Ronaldo" value="<?php echo $nama ?>">
             </div>
         </div>
         <div class="col mt-1">
@@ -91,7 +91,7 @@ if (isset($_GET['aksi'])) {
                 Alamat
             </label>
             <div>
-                <input type="text" class="form-control" name="alamat" id="inputalamat" placeholder="cth: Jl.Mawar" value="<?php echo $alamat ?>">
+                <input type="text" class="form-control" name="alamat" id="inputalamat" required placeholder="cth: Jl.Mawar" value="<?php echo $alamat ?>">
             </div>
         </div>
         <div class="col mt-1">
@@ -99,7 +99,7 @@ if (isset($_GET['aksi'])) {
                 No HP
             </label>
             <div>
-                <input type="text" class="form-control" name="no_hp" id="inputNoHp" placeholder="08XXXXXXXXXX" value="<?php echo $no_hp ?>">
+                <input type="text" class="form-control" name="no_hp" id="inputNoHp" required placeholder="08XXXXXXXXXX" value="<?php echo $no_hp ?>">
             </div>
         </div>
         <div class="col mt-1">
@@ -107,7 +107,7 @@ if (isset($_GET['aksi'])) {
                 Poli
             </label>
             <div>
-                <select class="form-select" name="id_poli" id="inputPoli">
+                <select class="form-select" required name="id_poli" id="inputPoli">
                     <option value="">Pilih Poli</option>
                     <?php
                     $poli_result = mysqli_query($mysqli, "SELECT * FROM poli");
@@ -124,7 +124,7 @@ if (isset($_GET['aksi'])) {
                 NIP
             </label>
             <div>
-                <input type="text" class="form-control" name="nip" id="inputNip" placeholder="NIP" value="<?php echo $nip ?>">
+                <input type="text" class="form-control" name="nip" id="inputNip" required placeholder="NIP" value="<?php echo $nip ?>">
             </div>
         </div>
         <div class="col mt-1">
@@ -132,11 +132,11 @@ if (isset($_GET['aksi'])) {
                 Password
             </label>
             <div>
-                <input type="password" class="form-control" name="password" id="inputPassword" placeholder="password" value="<?php echo $password ?>">
+                <input type="password" class="form-control" name="password" id="inputPassword" required placeholder="password" value="<?php echo $password ?>">
             </div>
         </div>
         <div class="col mt-3">
-            <div class=col>
+            <div class="col">
                 <button type="submit" class="btn btn-primary rounded-pill px-3 mt-auto" name="simpan">Simpan</button>
             </div>
         </div>

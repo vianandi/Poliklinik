@@ -32,6 +32,12 @@ include_once("koneksi.php");
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="index.php?page=pasienbaru">Pasien Baru</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.php?page=pasienlama">Pasien Lama</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.php?page=pasiendaftar">Daftar Poliklinik</a>
+                    </li>
                     <?php
                     if (isset($_SESSION['username'])) {
                         // Jika admin sudah login, tampilkan menu "Dashboard Admin"
@@ -72,7 +78,7 @@ include_once("koneksi.php");
                             <a class="nav-link" href="index.php?page=registerUser">Register</a>
                         </li> -->
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?page=loginUser">Login</a>
+                            <a class="nav-link" href="index.php?page=loginUser">Admin</a>
                         </li>
                     </ul>
                 <?php
