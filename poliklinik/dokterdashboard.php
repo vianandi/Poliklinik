@@ -147,7 +147,7 @@ include_once("koneksi.php");
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="dokterdashboard.php?page=pasien" class="nav-link">
+                            <a href="dokterdashboard.php?page=riwayatpasien" class="nav-link">
                                 <i class="nav-icon fas fa-solid fa-file-medical"></i>
                                 <p>
                                     Riwayat Pasien

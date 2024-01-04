@@ -33,7 +33,7 @@ include_once("koneksi.php");
                         <a class="nav-link" aria-current="page" href="index.php?page=pasienbaru">Pasien Baru</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.php?page=pasienlama">Pasien Lama</a>
+                        <a class="nav-link" aria-current="page" href="index.php?page=pasienlama">Cek No. Rekam Medis</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="index.php?page=pasiendaftar">Daftar Poliklinik</a>
@@ -88,7 +88,7 @@ include_once("koneksi.php");
             </div>
         </div>
     </nav>
-    
+
 
     <main role="main" class="container">
         <?php

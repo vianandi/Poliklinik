@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h2 class="text-center mb-4">PENDAFTARAN POLIKLINIK</h2>
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header text-center fw-bold" style="font-size: 1.5rem;">MASUKKAN DATA ANDA</div>
+                    <div class="card-header text-center fw-bold" style="font-size: 1.5rem; background-color:#125FCD; color:aliceblue">MASUKKAN DATA ANDA</div>
                     <div class="card-body my-4">
                         <form method="POST" action="index.php?page=pasiendaftar" class="ms-4">
                             <?php
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             ?>
                             <div class="form-group">
                                 <label for="no_rm">Nomor Rekam Medis (RM)</label>
-                                <input type="text" name="no_rm" class="form-control" required placeholder="Masukkan no_rm anda">
+                                <input type="text" name="no_rm" class="form-control" required placeholder="Masukkan nomor rekam medis anda">
                             </div>
                             <div class="text-center mt-3">
                                 <button type="submit" class="btn btn-outline-primary px-4 btn-block">Cari</button>
