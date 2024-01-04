@@ -1,7 +1,0 @@
-Link GitHub : https://github.com/vianandi/Poliklinik/
-
-Login Admin : vian == 123456 || admin == admin
-
-Login Dokter yang sudah di input : 2001 (4 Nomor awal)
-
-File tidak termasuk, karena terlalu besar.
