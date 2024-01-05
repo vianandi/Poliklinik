@@ -87,11 +87,6 @@ include_once("koneksi.php");
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-                        <i class="fas fa-th-large"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <?php
                     if (isset($_SESSION['nip'])) {
                         // Jika pengguna sudah login, tampilkan tombol "Logout"
@@ -169,13 +164,13 @@ include_once("koneksi.php");
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h2>
-                                <?php
-                                if (isset($_GET['page'])) {
-                                    echo ucwords($_GET['page']);
-                                } else {
-                                    echo "Dashboard";
-                                }
-                                ?>
+                                    <?php
+                                    if (isset($_GET['page'])) {
+                                        echo ucwords($_GET['page']);
+                                    } else {
+                                        echo "Dashboard";
+                                    }
+                                    ?>
                             </h2>
 
                         </div><!-- /.col -->
