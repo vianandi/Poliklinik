@@ -90,19 +90,18 @@ include_once("koneksi.php");
     </nav>
 
 
-    <main role="main" class="container">
+    <main role="main">
         <?php
 
         if (isset($_GET['page'])) {
             include($_GET['page'] . ".php");
         } else {
-            echo "<br><h2>Selamat Datang di Sistem Informasi Poliklinik";
-
+            include("landingpage.php");
             if (isset($_SESSION['username'])) {
                 //jika sudah login tampilkan username
                 echo ", " . $_SESSION['username'] . "</h2><hr>";
             } else {
-                echo "</h2><hr>Silakan Login untuk menggunakan sistem. Jika belum memiliki akun silakan Register terlebih dahulu.";
+                
             }
         }
         ?>

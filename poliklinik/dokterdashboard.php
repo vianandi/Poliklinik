@@ -35,6 +35,8 @@ include_once("koneksi.php");
     <!-- summernote -->
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -131,6 +133,14 @@ include_once("koneksi.php");
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="dokterdashboard.php?page=jadwalperiksadokter" class="nav-link">
+                                <i class="nav-icon fas fa-solid fa-calendar-day"></i>
+                                <p>
+                                    Jadwal Dokter
                                 </p>
                             </a>
                         </li>
@@ -243,6 +253,7 @@ include_once("koneksi.php");
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="dist/js/pages/dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </body>
 
 </html>
