@@ -34,6 +34,7 @@ include_once("koneksi.php");
     <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -164,13 +165,13 @@ include_once("koneksi.php");
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <h2>
-                                    <?php
-                                    if (isset($_GET['page'])) {
-                                        echo ucwords($_GET['page']);
-                                    } else {
-                                        echo "Dashboard";
-                                    }
-                                    ?>
+                                <?php
+                                if (isset($_GET['page'])) {
+                                    echo ucwords($_GET['page']);
+                                } else {
+                                    echo "Dashboard";
+                                }
+                                ?>
                             </h2>
 
                         </div><!-- /.col -->
@@ -241,6 +242,7 @@ include_once("koneksi.php");
     <script src="dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="dist/js/pages/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </body>
 
 </html>

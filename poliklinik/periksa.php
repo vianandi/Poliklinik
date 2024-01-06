@@ -90,18 +90,65 @@ if (isset($_POST['simpanData'])) {
                     </div>
                     <div class="dropdown mb-3 w-25">
                         <label for="id_obat">Obat <span class="text-danger">*</span></label>
-                        <select class="form-select" name="id_obat" aria-label="id_obat">
-                            <option value="" selected>Pilih Obat...</option>
+                        <select class="form-select" name="id_obat" id="id_obat" aria-label="id_obat" multiple>
+                            <option value="">Pilih Obat...</option>
                             <?php
                             $result = mysqli_query($mysqli, "SELECT * FROM obat");
 
                             while ($data = mysqli_fetch_assoc($result)) {
-                                echo "<option value='" . $data['id'] . "'>" . $data['nama_obat'] . "</option>";
+                                echo "<option value='" . $data['id'] . "'data-harga='" . $data['harga'] . "' >" . $data['nama_obat'] . " (" . $data['kemasan'] . ")"  . " (Rp " . $data['harga'] . ")" . "</option>";
                             }
                             ?>
-
                         </select>
                     </div>
+                    <style>
+                        /* Style for the total biaya periksa alert */
+                        #total_biaya_periksa {
+                            background-color: #d4edda;
+                            /* Set the background color */
+                            color: #155724;
+                            /* Set the text color */
+                            border-color: #c3e6cb;
+                            /* Set the border color */
+                        }
+                    </style>
+                    <div id="total_biaya_periksa" class="alert alert-success" role="alert"></div>
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            // Initialize Select2 for the id_obat dropdown
+                            $('#id_obat').select2({
+                                placeholder: 'Pilih Obat'
+                            });
+
+                            // Add an onchange event listener to the id_obat dropdown
+                            $('#id_obat').on('change.select2', function(e) {
+                                updateTotalBiayaPeriksa();
+                            });
+
+                            updateTotalBiayaPeriksa();
+
+                        });
+
+                        // Function to update the total biaya periksa
+                        function updateTotalBiayaPeriksa() {
+                            var baseBiayaPeriksa = 150000;
+                            var biayaPeriksa = baseBiayaPeriksa;
+
+                            // Get selected options from the id_obat dropdown
+                            var selectedObats = document.getElementById('id_obat').selectedOptions;
+
+                            // Loop through selected options and update biayaPeriksa
+                            for (var i = 0; i < selectedObats.length; i++) {
+                                var hargaObat = parseFloat(selectedObats[i].getAttribute('data-harga'));
+                                biayaPeriksa += parseFloat(hargaObat);
+                            }
+
+
+                            // Display the updated total biaya periksa
+                            document.getElementById('total_biaya_periksa').textContent = 'Total Biaya Periksa: Rp ' + biayaPeriksa
+                                .toLocaleString();
+                        }
+                    </script>
                     <div class="col mt-3">
                         <div class="col">
                             <button type="submit" name="simpanData" class="btn btn-primary rounded px-3 mt-auto">Simpan</button>
@@ -116,8 +163,10 @@ if (isset($_POST['simpanData'])) {
                         <tr>
                             <th valign="middle">No</th>
                             <th valign="middle">Nama Pasien</th>
-                            <th valign="middle">No. Antrian</th>
                             <th valign="middle">Keluhan</th>
+                            <th valign="middle">Hari</th>
+                            <th valign="middle">Jam Periksa</th>
+                            <th valign="middle">No. Antrian</th>
                             <th valign="middle">Aksi</th>
                         </tr>
                     </thead>
@@ -143,8 +192,16 @@ if (isset($_POST['simpanData'])) {
                             <tr>
                                 <td><?php echo $no++ ?></td>
                                 <td><?php echo $data['nama'] ?></td>
-                                <td><?php echo $data['no_antrian'] ?></td>
                                 <td><?php echo $data['keluhan'] ?></td>
+                                <td><?php echo $data['hari'] ?></td>
+                                <td>
+                                    <?php
+                                    echo date('H:i', strtotime($data['jam_mulai']));
+                                    echo ' - ' . date('H:i', strtotime($data['jam_selesai']));
+                                    ?>
+                                </td>
+
+                                <td><?php echo $data['no_antrian'] ?></td>
                                 <td>
                                     <a class="btn btn-success rounded-pill px-3" href="dokterdashboard.php?page=periksa&id=<?php echo $data['id'] ?>">Periksa</a>
 
