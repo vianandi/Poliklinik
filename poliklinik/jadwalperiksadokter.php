@@ -13,11 +13,47 @@ if (isset($_POST['simpan'])) {
     $hari = $_POST['hari'];
     $jam_mulai = $_POST['jam_mulai'];
     $jam_selesai = $_POST['jam_selesai'];
+    $status = 1; // Assuming 1 means active
+
+    if (isset($_POST['id']) && isset($_POST['status'])) {
+        $id = $_POST['id'];
+        $newStatus = $_POST['status'];
+
+        $stmtToggle = $mysqli->prepare("UPDATE jadwal_periksa SET status=? WHERE id=?");
+        $stmtToggle->bind_param("ii", $newStatus, $id);
+
+        if ($stmtToggle->execute()) {
+            echo "<script> 
+                        alert('Berhasil mengubah status.');
+                        document.location='dokterdashboard.php?page=jadwalperiksadokter';
+                    </script>";
+        } else {
+            echo "<script> 
+                        alert('Gagal mengubah status: " . mysqli_error($mysqli) . "');
+                        document.location='dokterdashboard.php?page=jadwalperiksadokter';
+                    </script>";
+        }
+
+        $stmtToggle->close();
+    }
 
     if (isset($_POST['id'])) {
-        $id = $_POST['id'];
-        $stmt = $mysqli->prepare("UPDATE jadwal_periksa SET id_dokter=?, hari=?, jam_mulai=?, jam_selesai=? WHERE id=?");
-        $stmt->bind_param("isssi", $id_dokter, $hari, $jam_mulai, $jam_selesai, $id);
+        // If editing an existing schedule, retrieve the current status
+        $stmtStatus = $mysqli->prepare("SELECT status FROM jadwal_periksa WHERE id = ?");
+        $stmtStatus->bind_param("i", $_POST['id']);
+        $stmtStatus->execute();
+        $stmtStatus->bind_result($status);
+        $stmtStatus->fetch();
+        $stmtStatus->close();
+    }
+
+    if (isset($_POST['status'])) {
+        $status = $_POST['status'];
+    }
+
+    if (isset($_POST['id'])) {
+        $stmt = $mysqli->prepare("UPDATE jadwal_periksa SET id_dokter=?, hari=?, jam_mulai=?, jam_selesai=?, status=? WHERE id=?");
+        $stmt->bind_param("isssii", $id_dokter, $hari, $jam_mulai, $jam_selesai, $status, $_POST['id']);
 
         if ($stmt->execute()) {
             echo "
@@ -32,8 +68,8 @@ if (isset($_POST['simpan'])) {
 
         $stmt->close();
     } else {
-        $stmt = $mysqli->prepare("INSERT INTO jadwal_periksa (id_dokter, hari, jam_mulai, jam_selesai) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("isss", $id_dokter, $hari, $jam_mulai, $jam_selesai);
+        $stmt = $mysqli->prepare("INSERT INTO jadwal_periksa (id_dokter, hari, jam_mulai, jam_selesai, status) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("isssi", $id_dokter, $hari, $jam_mulai, $jam_selesai, $status);
 
         if ($stmt->execute()) {
             echo "
@@ -80,6 +116,8 @@ if (isset($_GET['aksi'])) {
         $stmt->close();
     }
 }
+
+
 ?>
 <main class="mdl-layout__content ui-form-components">
 
@@ -182,7 +220,7 @@ if (isset($_GET['aksi'])) {
                             <?php
                             $id_dokter = $_SESSION['id'];
 
-                            $result = mysqli_query($mysqli, "SELECT dokter.nama, jadwal_periksa.id, jadwal_periksa.hari, jadwal_periksa.jam_mulai, jadwal_periksa.jam_selesai 
+                            $result = mysqli_query($mysqli, "SELECT dokter.nama, jadwal_periksa.id, jadwal_periksa.hari, jadwal_periksa.jam_mulai, jadwal_periksa.jam_selesai, jadwal_periksa.status 
                             FROM dokter 
                             JOIN jadwal_periksa ON dokter.id = jadwal_periksa.id_dokter 
                             WHERE dokter.id = $id_dokter");
@@ -200,8 +238,18 @@ if (isset($_GET['aksi'])) {
                                         ?>
                                     </td>
                                     <td>
-                                        <a class="btn btn-success rounded-pill px-3" href="dokterdashboard.php?page=jadwalperiksadokter&id=<?php echo $data['id'] ?>">Ubah</a>
-                                        <a class="btn btn-danger rounded-pill px-3" href="dokterdashboard.php?page=jadwalperiksadokter&id=<?php echo $data['id'] ?>&aksi=hapus">Hapus</a>
+                                        <?php
+                                        $statusText = ($data['status'] == 1) ? 'Aktif' : 'Non-Aktif';
+                                        $buttonClass = ($data['status'] == 1) ? 'btn-success' : 'btn-danger';
+                                        $toggleStatus = ($data['status'] == 1) ? 0 : 1;
+                                        ?>
+                                        <form action="" method="POST">
+                                            <input type="hidden" name="id" value="<?php echo $data['id'] ?>">
+                                            <input type="hidden" name="status" value="<?php echo $toggleStatus ?>">
+                                            <button type="submit" class="btn <?php echo $buttonClass ?> rounded-pill px-3">
+                                                <?php echo $statusText ?>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             <?php endwhile; ?>
